@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { StartButton, PauseButton, ResetButton, Container, TimerContainer, TimerText, ButtonsContainer } from "../styles/TimerStyles"; 
 
 const Timer = () => {
   const [time, setTime] = useState(0);
@@ -17,12 +18,27 @@ const Timer = () => {
   }, [isRunning]);
 
   return (
-    <div>
-      <h1>Timer: {time}s</h1>
-      <button onClick={() => setIsRunning(true)}>Iniciar</button>
-      <button onClick={() => setIsRunning(false)}>Pausar</button>
-      <button onClick={() => { setIsRunning(false); setTime(0); }}>Recomeçar</button>
-    </div>
+    <Container>
+      <TimerContainer>
+        <TimerText>Timer: {time}s</TimerText>
+
+        <ButtonsContainer>
+
+          <StartButton onClick={() => setIsRunning(true)} disabled={isRunning}>
+            {time > 0 ? "Retornar" : "Iniciar"}
+          </StartButton>
+
+          <PauseButton onClick={() => setIsRunning(false)} disabled={!isRunning}>
+            Pausar
+          </PauseButton>
+
+          <ResetButton onClick={() => {setIsRunning(false); setTime(0);}} disabled={time === 0 && !isRunning}>
+            Resetar
+          </ResetButton>
+
+        </ButtonsContainer>
+      </TimerContainer>
+    </Container>
   );
 };
 

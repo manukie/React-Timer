@@ -1,12 +1,14 @@
+import React from "react";
 import Timer from "./components/Timer";
+import { GlobalStyle } from "./styles/TimerStyles";
 
-function App() {
+const App = () => {
   return (
-    <div>
-      <h1>React Timer</h1>
+    <>
+      <GlobalStyle />
       <Timer />
-    </div>
+    </>
   );
-}
+};
 
 export default App;
